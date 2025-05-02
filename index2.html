@@ -1,0 +1,18 @@
+# Define the new HTML content that displays "Surprise!"
+html_surprise = """
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Surprise</title>
+</head>
+<body>
+  <h1 style="text-align:center; margin-top: 200px; font-size: 48px;">Surprise!</h1>
+</body>
+</html>
+"""
+
+# Save this HTML to a new file
+surprise_file_path = Path("/mnt/data/surprise_index.html")
+surprise_file_path.write_text(html_surprise)
+
+surprise_file_path.name
